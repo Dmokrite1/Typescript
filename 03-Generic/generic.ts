@@ -37,6 +37,7 @@ function returnArgGenericMagic<T>(arg: T) {
 const copyOfFormationAgain = returnArgGenericMagic(formationTypescript);
 
 // Interface JsonApiResponse avec un type générique pour les attributs
+// Il est important de noter que modifier ou étendre des interfaces natives telles que Object peut avoir des implications inattendues et n'est généralement pas recommandé
 interface JsonApiResponse<TypeGeneric extends Object>{
     id: string;
     type: string;
