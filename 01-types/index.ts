@@ -1,132 +1,135 @@
+// Définition d'une variable avec un type explicite
 const fruit: string = 'banane';
+
+// Définition d'une variable avec inférence de type
 let couleur = "mauve";
 
-console.log(fruit.toUpperCase());
-console.log(couleur.charAt(2));
+// Méthodes disponibles sur les chaînes de caractères
+console.log(fruit.toUpperCase()); // Affiche "BANANE"
+console.log(couleur.charAt(2)); // Affiche le caractère à l'index 2, "u"
 
+// Déclaration de variables avec différents types de données
 let myFavoriteNumber: number = 42;
 let isActive: boolean = true;
 
+// Utilisation d'une union de types
 let example: string | number = '42';
-// on peut le réassigner comme chiffre
-example = 42;
+console.log(myFavoriteNumber, isActive, example); // Affiche 42 true "42"
 
-// Tableaux
+// Déclaration d'un tableau de chaînes de caractères
 const mesAlcools: string[] = ['Chartreuse', 'Rhum'];
-// const mesAlcools: Array<string> = ['Chartreuse', 'Rhum'];
-// Tableau de string OU de nombre
-const monFourreTout: Array<string | number> = [42, 'banane', 45, 53]
-// const monFourreTout: (string | number)[] = [42, 'banane', 45, 53]
-// Tuple
-// Tableau qui a nombre défini d'élément
-const tuple: [number, string] = [42, 'H2G2']
 
-// Objet javascript
+// Déclaration d'un tableau avec des types variés
+const monFourreTout: Array<string | number> = [42, 'banane', 45, 53];
+
+// Déclaration d'un tuple
+// Un tuple en TypeScript est une structure de données qui permet de stocker un nombre fixe d'éléments, dont les types peuvent être différents. Contrairement aux tableaux où vous accédez aux éléments en utilisant leur indice numérique, dans un tuple, vous accédez aux éléments en utilisant leur position dans le tuple.
+const tuple: [number, string] = [42, 'H2G2'];
+
+// Déclaration d'un objet JavaScript
 const player: object = {
     name: 'Dramix',
     toString: () => "Player: Dramix",
-}
+};
 
-// Objet avec propriété optionnel
+// Déclaration d'un objet avec propriétés optionnelles
 const couleurRGB: {
     rouge: number,
     vert: number,
     bleu: number,
-    // le ?  rend la propriété optionnel
-    opacity?: number,
+    opacity?: number, // Propriété optionnelle
 } = {
     rouge: 255,
     bleu: 255,
     vert: 0,
-    opacity: 1
-} 
+    opacity: 1 // Propriété optionnelle peut être omise
+};
 
-// Enum 
-
-const enum Roles {
+// Définition de l'énumération Roles
+enum Roles {
     User = 'user',
     Admin = 'admin'
 }
-
+// Utilisation d'une énumération
 const adminRole: Roles = Roles.Admin;
+console.log(adminRole);
 
-
-// Les fonctions
-
+// Définition de fonctions
 function sum(number1: number, number2: number): number {
     return number1 + number2;
 }
 
+// Définition d'une fonction qui ne retourne rien
 function bark(): void {
-    console.log('bark')
-
-    return;
+    console.log('bark');
+    return; // Facultatif car la fonction retourne void
 }
 
+// Utilisation d'une fonction avec union de types
 function weirdSum(number1: string | number, number2: number): number {
-   // aprés le if, il n 'y a plus d'erreur parce typescript comprend que si c'était un string avant,
-   // ma variable devient un number dès qu'elle rentre dans la condition 
-   if (typeof number1 === 'string') {
+    if (typeof number1 === 'string') {
         number1 = Number(number1);
     }
     return number1 + number2;
 }
 
-// /!\ 
+// Appels de fonctions
+bark();
+weirdSum(47, 64);
+
+// Définition d'une fonction avec paramètres optionnels
 function stringify(nbr: number, lastArg?: boolean, turnToSentence?: boolean) {
     if (turnToSentence) {
         return `${nbr} est un nombre`;
     }
-    return nbr.toString();    
+    return nbr.toString();
 }
-// on ne doit pas spécifier le deuxième argument
-// car la propriété est optionnel
+
+// Appels de fonction avec paramètres optionnels
 const nbrAsString = stringify(42);
 const nbrAsSentence = stringify(42, undefined, true);
 const nbrTest = stringify(42, true);
 
-const result= sum(40, 2);
-
+// Utilisation d'une fonction avec un nombre variable d'arguments
 function infiniteSum(...numberList: number[]) {
     let result = 0;
-    console.log('Liste de nombre :', numberList);
-
     for (const nbr of numberList) {
         result += nbr;
     }
     return result;
 }
 
+// Appels de fonction avec un nombre variable d'arguments
 infiniteSum(2, 2, 4);
 infiniteSum(40, 2);
 infiniteSum(40, 40, 160, 1097);
 
+// Utilisation du type "any"
 const manierePasTop: any = 'pas terrible';
-// console.log(manierePasTop.toBanane());
+
+// Utilisation du type "unknown"
 let mieuxGerer: unknown = 'inconnu';
 
 if (typeof mieuxGerer === 'string') {
     mieuxGerer = mieuxGerer.toUpperCase();
 }
+console.log(manierePasTop);
 
+// Définition et utilisation d'une fonction avec une fonction de rappel
 export function gift(age: number, openGift: (name: string, age: number) => void) {
-        openGift('chatGpt', age);
+    openGift('chatGpt', age);
 }
 
 gift(1, (name: string, age: number) => {
     console.log(`Joyeux anniversaire ${name}, tu as ${age} ans`);
     return;
-})
+});
 
-//  assertions
-
+// Utilisation des assertions de type
 const variableInconnu: unknown = "banane";
 const password: string = variableInconnu as string;
 
-// Radioactif, pas toucher, fuir !!!!
-const fakeNumber = "20" as unknown as number
-// console.log(fakeNumber.toFixed());
-
+// Déclaration de types personnalisés avec "type"
 type ViewMode = 'List' | 'Grid' | "Kanban";
 
 type User = {
@@ -135,19 +138,20 @@ type User = {
     age: number
 };
 
+// Utilisation des types personnalisés
 const viewMode: ViewMode = 'Grid';
-const viewUserList: ViewMode = 'List';
-
 const nouvelleUtilisateur: User = {
     firstName: 'Romain',
     lastName: 'Verliefden',
     age: 25,
-} 
+};
 
-const userProperty: keyof User = 'firstName'
+// Utilisation de "keyof" pour obtenir les clés d'un type
+const userProperty: keyof User = 'firstName';
 
-const partialUser: Partial<User> = {firstName: "Goooo"}
-const record: Record<string, number> = {
-    id: 4,
-    
-}
+// Utilisation de "Partial" et "Record"
+const partialUser: Partial<User> = { firstName: "Goooo" };
+const record: Record<string, number> = { id: 4 };
+
+// Affichage des résultats
+console.log(viewMode, nouvelleUtilisateur, userProperty, partialUser, record);
