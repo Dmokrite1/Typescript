@@ -102,7 +102,7 @@ class Stack<T> {
     }
 }
 
-// Création d'une pile de mots et ajout d'un mot
+// Création d'une pile de mots et ajout d'un mot + ===> <> équivalent à un "as" pour l'assertion
 const wordStack = new Stack<string>();
 wordStack.add("bye");
 
