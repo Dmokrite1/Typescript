@@ -22,14 +22,14 @@ class Pomme implements Fruit {
 } 
 
 // Instanciation d'objets de la classe Pomme
-const pommeDeBruno = new Pomme("jaune et rouge", "une demi-souris logitech de haut");
-pommeDeBruno.acidityLevel = undefined;
+const pinkLady = new Pomme("jaune et rouge", "une demi-souris logitech de haut");
+pinkLady.acidityLevel = undefined;
 
 const pommeApple = new Pomme("grise","un quart de souris logitech");
 pommeApple.acidityLevel = '0, ça ne se mange pas. C\'est un logo :/';
 
 // Affichage des descriptions des pommes
-console.log(pommeDeBruno.getDescription());
+console.log(pinkLady.getDescription());
 console.log(pommeApple.getDescription());
 
 // Définition d'une classe Poire qui implémente l'interface Fruit
@@ -59,4 +59,4 @@ function logFruitColor(fruit: Fruit) {
 
 // Appels de la fonction avec différents objets (instances de classe et objet littéral)
 logFruitColor(Pêche); // Affiche la couleur de la pêche
-logFruitColor(pommeDeBruno); // Affiche la couleur de la pomme de Bruno
+logFruitColor(pinkLady); // Affiche la couleur de la pomme de Bruno

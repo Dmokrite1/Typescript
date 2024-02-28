@@ -30,7 +30,7 @@ Ensuite créer une classe UserLogger dont la méthode log affichera le nom et le
 
 Ainsi que classe StudentLogger dont la méthode Log affiche le nom, le prénom, le cours qu'il suit actuellement en plus de l'action qu'il effectue
 
-interface Utilisateur {
+interface User {
     firstName: string,
     lastName: string,
 }

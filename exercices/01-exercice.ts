@@ -9,7 +9,7 @@ class Chien implements Animal {
     type: string;
 
     constructor(name: string) {
-        this.name = name;
+        this.name = "name";
         this.type = "canin";
     }
 }
